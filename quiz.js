@@ -197,6 +197,41 @@ function question4(){
     column.addEventListener('dragend', handleDragEnd, false);
   });
   
+  
+  var answers = {
+    'col2' : '1971',
+    'col7' : '1967',
+    'col3' : '1957',
+    'col4' : '1953',
+    'col5' : '1951',
+    'col1' : '1940',
+    'col6' : '1841'
+  };
+  
+  $('#submit_q4').click(function(){
+    var submittedAnswers = [];
+    var numberOfWrongAnswers = 0;
+    $('#q4 .answers').find("div").each(function(){
+      submittedAnswers.push(this.id);
+    })
+    
+    for(let i = 0; i < submittedAnswers.length; i ++){
+      // error class will be added to here
+      if(submittedAnswers[i] != Object.keys(answers)[i]){
+        numberOfWrongAnswers++;
+      }
+      
+      $("#q4 .answers #" + submittedAnswers[i]).append(" (" + answers[submittedAnswers[i]] + ")");
+    }
+      
+    if(numberOfWrongAnswers == 0){
+      totalScore += 1;
+      displayTotalScore();
+    }
+    
+    $('#submit_q4').attr('disabled', true);
+  });
+  
 }
 
 function displayTotalScore(){
