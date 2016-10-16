@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Assignment 1: CS Quiz</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <title>Assignment 1: CS Quiz</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="quiz.js"></script>
+  </head>
 
-<body>
-</body>
+  <body>
+    <div id="info">
+      <p>Assignment 1: CS Quiz</p>
+      <p>Total Score: <span id="score">0</span></p>
+    </div>
 
+    <div id="quiz">
+      <div id="q1">
+       
+        <div id="question">
+          1)The first electronic computer in Canada was housed in the Computer Science Department at the U of T.  What was its name?
+        </div>
+        
+        <div id="answers">
+          <ul>
+            <li>
+              <p><input type="radio" name="answer" value="hal900">HAL 900</p>
+              <p id="hal900" hidden="hidden">The HAL 9000 is a fictional computer from Arthur C. Clarke's 2001: A Space Odyssey.</p>
+            </li>
+            
+            <li>
+              <p><input type="radio" name="answer" value="ferut">FERUT</p>
+              <p id="ferut" hidden="hidden">The machine arrived in Canada on April 30, 1952.  Named FERUT (FERranti U of T), it was used to compute changes in water levels due to the opening of the St. Lawrence Seaway.</p>
+            </li>
+            
+            <li>
+              <p><input type="radio" name="answer" value="illiac">ILLIAC</p>
+              <p id="illiac" hidden="hidden">The ILLIAC was built at the University of Illinois. It was the first von Neumann architecture computer built and owned by an American university. It was put into service on September 22, 1952.</p>
+            </li>
+            
+            <li>
+              <p><input type="radio" name="answer" value="univacs">UNIVACs</p>
+              <p id="univacs" hidden="hidden">The UNIVAC was the first commericial computer produced in the United States, and was designed by J. Presper Eckert and John Mauchly.  The United States Census Department received delivery of the first UNIVAC in May 1952.</p>
+            </li>
+          </ul>
+        </div>
+        
+        <div id="explanations" hidden="hidden">
+          <input id="show_explanation" type="button" value="Show all explanations" />
+        </div>
+        
+      </div>
+    </div>
+
+  </body>
 </html>
