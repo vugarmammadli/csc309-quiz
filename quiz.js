@@ -124,6 +124,81 @@ function question3(){
   
 }
 
+function question4(){
+  
+  //Some codes are taken from https://www.html5rocks.com/en/tutorials/dnd/basics/
+  var dragSource;
+  var allColumns = $('#q4 .answers .column');
+  
+  function handleDragStart(e){
+    // this / e.target is the source node.
+    $(this).css('opacity', '0.4');
+    
+    dragSource = $(this);
+    
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.innerHTML);
+  }
+  
+  function handleDragOver(e){
+    if(e.preventDefault)
+      e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    return false;
+  }
+  
+  function handleDragEnter(e) {
+    // this / e.target is the current hover target.
+    $(this).addClass('over');
+  }
+  
+  function handleDragLeave(e) {
+    // this / e.target is previous target element.
+    $(this).removeClass('over');
+  }
+  
+  function handleDrop(e) {
+    // this / e.target is current target element.
+    if (e.stopPropagation) {
+      e.stopPropagation(); // stops the browser from redirecting.
+    }
+    
+    // Don't do anything if dropping the same column we're dragging.
+    if (dragSource != $(this)) {
+      // Set the source column's HTML to the HTML of the column we dropped on.
+      dragSource.html($(this).html());
+      $(this).html(e.dataTransfer.getData('text/html'));
+      // Change ids of replaced choices
+      var itemToChangeId = $(this).attr('id');
+      var itemReplaced = dragSource.attr('id');
+      $(this).attr('id', itemReplaced);
+      dragSource.attr('id', itemToChangeId);
+    }
+    
+    return false;
+  }
+  
+  function handleDragEnd(e) {
+    // this/e.target is the source node.
+
+    allColumns.each(function(index, column) {
+      $(column).removeClass('over');
+    });
+    
+    $(this).css('opacity', '1.0');
+  }
+  
+  allColumns.each(function(index, column) {
+    column.addEventListener('dragstart', handleDragStart, false);
+    column.addEventListener('dragenter', handleDragEnter, false);
+    column.addEventListener('dragover', handleDragOver, false);
+    column.addEventListener('dragleave', handleDragLeave, false);
+    column.addEventListener('drop', handleDrop, false);
+    column.addEventListener('dragend', handleDragEnd, false);
+  });
+  
+}
+
 function displayTotalScore(){
   $('#score').text(totalScore);
 }
@@ -132,5 +207,6 @@ $(document).ready(function () {
   question1();
   question2();
   question3();
+  question4();
   displayTotalScore();
 });
