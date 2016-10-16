@@ -1,0 +1,19 @@
+.q3_list{
+  width: 100%;
+  border-spacing: 5px;
+  border-collapse: separate;
+}
+
+.q3_list td:first-child{
+  width: 20%;
+  cursor: pointer;
+}
+
+.q3_list td:last-child{
+  width: 80%;
+  cursor: pointer;
+}
+
+.q3_list td:last-child span{
+  cursor: pointer;
+}

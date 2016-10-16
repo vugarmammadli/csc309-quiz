@@ -66,6 +66,61 @@ function question2(){
       $('#submit_q2').attr('disabled', true);
     }
   });
+}
+
+function question3(){
+  var profName;
+  var claim;
+  var selectedPairs = {};
+  var allProfs = [];
+  
+  //gets all professor's names
+  $('.q3_list td:first-child').each(function() {
+    allProfs.push($(this).attr('class'));
+  });
+  
+  //matching selected professor and selected claim
+  $('.q3_list td:first-child').click(function(){
+    profName = $(this).attr('class');
+    $('.q3_list td:last-child').click(function(){
+      claim = $(this).attr('class');
+      $("." + claim + " span").text($('.' + profName).text());
+      selectedPairs[claim] = profName;
+      //enables submit button if all matches are done.
+      if(Object.keys(selectedPairs).length == allProfs.length)
+        $('#submit_q3').removeAttr('disabled');
+      profName = "";
+      claim = "";
+    });
+  });
+  
+//  $('.q3_list td:last-child').click(function(){
+//    claim = $(this).attr('class');
+//    $('.q3_list td:first-child').click(function(){
+//      profName = $(this).attr('class');
+//      $("." + claim + " span").text($('.' + profName).text());
+//      selectedPairs[profName] = claim;
+//      profName = "";
+//      claim = "";
+//    });
+//  });
+  
+  //submit button for checking answers
+  $('#submit_q3').click(function(){
+    for(let pair in selectedPairs){
+      if(pair.indexOf(selectedPairs[pair]) == -1){
+        for(let p in allProfs){
+          if(pair.indexOf(allProfs[p]) != -1){
+            $('.' + pair).append(" (Correct answer: " + $('.' + allProfs[p]).text() + ")");
+          }
+        }
+      }else{
+        totalScore += 0.5;
+        displayTotalScore();
+      }
+    }
+  });
+  
   
 }
 
@@ -76,5 +131,6 @@ function displayTotalScore(){
 $(document).ready(function () {
   question1();
   question2();
+  question3();
   displayTotalScore();
 });
