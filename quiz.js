@@ -7,6 +7,7 @@ var numOfQuestionsAnswered = 0;
 function question1() {
   var firstAttempt = 0;
   var previousAnswer;
+  var q1score = 0;
   
   $("#q1 input[name='answer']").click(function(){
     
@@ -15,7 +16,8 @@ function question1() {
     
     if(answer == "ferut" && firstAttempt == 0){
       totalScore += 1;
-      currentScore = 1;
+      q1score = 1;
+      endQuiz();
     }
 
     //display clicked answers explanation and hide other explanations.
@@ -31,13 +33,14 @@ function question1() {
     // display show all explanation button.
     $('#explanations').removeAttr('hidden');
     
+    currentScore = q1score;
+    
     // display score for this question
     $("#q1 .question_header_score span").text(currentScore);
     $("#q1 .question_header_score").css('display', 'inline-block');
     
     firstAttempt = 1;
     displayTotalScore();
-    endQuiz();
   });
   
   // display all explanations for each answer.
