@@ -2,6 +2,7 @@
 
 var totalScore = 0; //the total score of the user
 var currentScore = 0; //current score for each answer
+var numOfQuestionsAnswered = 0;
 
 function question1() {
   var firstAttempt = 0;
@@ -36,6 +37,7 @@ function question1() {
     
     firstAttempt = 1;
     displayTotalScore();
+    endQuiz();
   });
   
   // display all explanations for each answer.
@@ -80,6 +82,7 @@ function question2(){
       $("#q2 .question_header_score").css('display', 'inline-block');
       
       $('#submit_q2').attr('disabled', true);
+      endQuiz();
     }
   });
 }
@@ -124,11 +127,13 @@ function question3(){
         currentScore += 0.5;
       }
     }
+    $('#submit_q3').attr('disabled', 'disabled');
     // display score for this question
     $("#q3 .question_header_score span").text(currentScore);
     $("#q3 .question_header_score").css('display', 'inline-block');
     totalScore += currentScore;
     displayTotalScore();
+    endQuiz();
   });
   
   
@@ -247,6 +252,7 @@ function question4(){
     $("#q4 .question_header_score span").text(currentScore);
     $("#q4 .question_header_score").css('display', 'inline-block');
     $('#submit_q4').attr('disabled', true);
+    endQuiz();
   });
   
 }
@@ -299,6 +305,36 @@ function displayTotalScore(){
   $('#score').text(totalScore);
 }
 
+function endQuiz(){
+  numOfQuestionsAnswered++;
+  
+  if(numOfQuestionsAnswered == 5){
+    $('.show_result').removeAttr('style');
+  }
+  
+  $('.show_result').click(function(){
+    $('.show_result').css('display', 'none');
+    $('#q1').css('display', 'none');
+    $('#q2').css('display', 'none');
+    $('#q3').css('display', 'none');
+    $('#q4').css('display', 'none');
+    $('#final').removeAttr('style');
+    $('.tasks').css('display', 'none');
+    
+    $('#q1score span.correct_answer').text($("#q1 .question_header_score span").text());
+    $('#q2score span.correct_answer').text($("#q2 .question_header_score span").text());
+    $('#q3score span.correct_answer').text($("#q3 .question_header_score span").text());
+    $('#q4score span.correct_answer').text($("#q4 .question_header_score span").text());
+    $('#finalscore span.correct_answer').text(totalScore);
+    
+    $('.question_header_text').text("Thank you!");
+  });
+  
+  $('#start_again').click(function(){
+    location.reload();
+  });
+}
+
 $(document).ready(function () {
   question1();
   question2();
@@ -306,5 +342,6 @@ $(document).ready(function () {
   question4();
   pagination();
   reset();
+  endQuiz();
   displayTotalScore();
 });

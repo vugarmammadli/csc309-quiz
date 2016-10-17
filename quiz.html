@@ -25,7 +25,6 @@
       <div class="container">
         
         <div id="q1">
-         
           <div class="message">
             Please select one answer. You only have one chance.
           </div>
@@ -116,7 +115,7 @@
         
         <div id="q3" style="display: none">
           <div class="message">
-            Please select exactly two answer. You only have one chance.
+            Please, firstly select the professor from the left side and then click the claim you want to match.
           </div>
           <div class="question">
             3) Match the CS Professor with his or her claim to fame:
@@ -201,6 +200,34 @@
             <div class="next">next &#10093;</div>
           </div>
         </div>
+        
+        <div id="final" style="display: none">
+          <div class="congrat">
+            Congratualtions! You just finished our cool quiz =)
+          </div>
+          <div id="q1score" class="congrat">
+            You got <span class="correct_answer"></span> points from question 1.
+          </div>
+          <div id="q2score" class="congrat">
+            You got <span class="correct_answer"></span> points from question 2.
+          </div>
+          <div id="q3score" class="congrat">
+            You got <span class="correct_answer"></span> points from question 3.
+          </div>
+          <div id="q4score" class="congrat">
+            You got <span class="correct_answer"></span> points from question 4.
+          </div>
+          <div id="finalscore" class="congrat">
+            Your final score is: <span class="correct_answer"></span>. Thank you!
+          </div>
+          <div class="congrat">
+            <input id="start_again" type="button" value="Start Again" />
+          </div>
+        </div>
+      </div>
+      
+      <div class="show_result" style="display: none">
+          Show Your Results
       </div>
     </div>
     
