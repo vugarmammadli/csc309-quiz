@@ -1,16 +1,21 @@
 "use strict";
 
 var totalScore = 0; //the total score of the user
+var currentScore = 0; //current score for each answer
 
 function question1() {
   var firstAttempt = 0;
   var previousAnswer;
   
   $("#q1 input[name='answer']").click(function(){
+    
+    $("#ferut").css("border", "4px solid #5acf51");
     var answer = $("#q1 input[name='answer']:checked").val();
     
-    if(answer == "ferut" && firstAttempt == 0)
+    if(answer == "ferut" && firstAttempt == 0){
       totalScore += 1;
+      currentScore = 1;
+    }
 
     //display clicked answers explanation and hide other explanations.
     if(firstAttempt != 0){
@@ -24,6 +29,10 @@ function question1() {
     
     // display show all explanation button.
     $('#explanations').removeAttr('hidden');
+    
+    // display score for this question
+    $("#q1 .question_header_score span").text(currentScore);
+    $("#q1 .question_header_score").css('display', 'inline-block');
     
     firstAttempt = 1;
     displayTotalScore();
@@ -39,29 +48,36 @@ function question1() {
 
 function question2(){
   var answers = [];
+  
   $('#submit_q2').click(function(){
+    currentScore = 0;
     $("#q2 input[name='answer']:checked").each(function(){
       answers.push($(this).val());
     });
     
     if(answers.length > 2){
-     $('#message').text("Only two words can be selected. Please try again.");
+     $('#q2 .message').text("Only two words can be selected. Please try again.");
       answers = [];
     } else if(answers.length < 2){
-      $('#message').text("Your answer is incomplete.  Please select another word.");
+      $('#q2 .message').text("Your answer is incomplete.  Please select another word.");
       answers = [];
     } else{
       if(answers.indexOf('function') != -1 && answers.indexOf('variable') != -1){
-        $('#message').text("Yes!  It is hard to believe that words we take for granted in computing were once so new.");
+        $('#q2 .message').text("Yes!  It is hard to believe that words we take for granted in computing were once so new.");
         totalScore += 2;
+        currentScore = 2;
         displayTotalScore();
       } else if(answers.indexOf('function') != -1 || answers.indexOf('variable') != -1){
         if(answers[0] == "function" || answers[0] == "variable")
-          $('#message').text("Incorrect: You picked " + answers[0] + " correctly, but " + answers[1] + " is one of the words that Professors Gotlieb and Hume got credit for.");
+          $('#q2 .message').text("Incorrect: You picked " + answers[0] + " correctly, but " + answers[1] + " is one of the words that Professors Gotlieb and Hume got credit for.");
         else if(answers[1] == "function" || answers[1] == "variable")
-          $('#message').text("Incorrect: You picked " + answers[1] + " correctly, but " + answers[0] + " is one of the words that Professors Gotlieb and Hume got credit for.");
+          $('#q2 .message').text("Incorrect: You picked " + answers[1] + " correctly, but " + answers[0] + " is one of the words that Professors Gotlieb and Hume got credit for.");
       } else
-        $('#message').text("Incorrect: Both words you chose are words that Professors Gotlieb and Hume were quoted for in the OED.");
+        $('#q2 .message').text("Incorrect: Both words you chose are words that Professors Gotlieb and Hume were quoted for in the OED.");
+      
+      // display score for this question
+      $("#q2 .question_header_score span").text(currentScore);
+      $("#q2 .question_header_score").css('display', 'inline-block');
       
       $('#submit_q2').attr('disabled', true);
     }
@@ -84,7 +100,7 @@ function question3(){
     profName = $(this).attr('class');
     $('.q3_list td:last-child').click(function(){
       claim = $(this).attr('class');
-      $("." + claim + " span").text($('.' + profName).text());
+      $("." + claim + " span.user_choice").text($('.' + profName).text());
       selectedPairs[claim] = profName;
       //enables submit button if all matches are done.
       if(Object.keys(selectedPairs).length == allProfs.length)
@@ -94,31 +110,25 @@ function question3(){
     });
   });
   
-//  $('.q3_list td:last-child').click(function(){
-//    claim = $(this).attr('class');
-//    $('.q3_list td:first-child').click(function(){
-//      profName = $(this).attr('class');
-//      $("." + claim + " span").text($('.' + profName).text());
-//      selectedPairs[profName] = claim;
-//      profName = "";
-//      claim = "";
-//    });
-//  });
-  
   //submit button for checking answers
   $('#submit_q3').click(function(){
+    currentScore = 0;
     for(let pair in selectedPairs){
       if(pair.indexOf(selectedPairs[pair]) == -1){
         for(let p in allProfs){
           if(pair.indexOf(allProfs[p]) != -1){
-            $('.' + pair).append(" (Correct answer: " + $('.' + allProfs[p]).text() + ")");
+            $('.' + pair + " span.correct_answer").append(" (Correct answer: " + $('.' + allProfs[p]).text() + ")");
           }
         }
       }else{
-        totalScore += 0.5;
-        displayTotalScore();
+        currentScore += 0.5;
       }
     }
+    // display score for this question
+    $("#q3 .question_header_score span").text(currentScore);
+    $("#q3 .question_header_score").css('display', 'inline-block');
+    totalScore += currentScore;
+    displayTotalScore();
   });
   
   
@@ -209,6 +219,7 @@ function question4(){
   };
   
   $('#submit_q4').click(function(){
+    currentScore = 0;
     var submittedAnswers = [];
     var numberOfWrongAnswers = 0;
     $('#q4 .answers').find("div").each(function(){
@@ -221,17 +232,67 @@ function question4(){
         numberOfWrongAnswers++;
       }
       
-      $("#q4 .answers #" + submittedAnswers[i]).append(" (" + answers[submittedAnswers[i]] + ")");
+      $("#q4 .answers #" + submittedAnswers[i] + " span.correct_answer").text(" (" + answers[submittedAnswers[i]] + ")");
     }
       
     if(numberOfWrongAnswers == 0){
+      $("#q4 .message").text("You arranged it correctly. Congratulations!");
+      currentScore = 1;
       totalScore += 1;
       displayTotalScore();
+    } else{
+      $("#q4 .message").text("You did not arrange all of them correctly. Sorry :(");
     }
     
+    $("#q4 .question_header_score span").text(currentScore);
+    $("#q4 .question_header_score").css('display', 'inline-block');
     $('#submit_q4').attr('disabled', true);
   });
   
+}
+
+function pagination(){
+  var prevQuestion = 1;
+  var nextQuestion = 1;
+  
+  $('.prev').css('cursor', 'not-allowed');
+  
+  $('.next').click(function(){
+    if(nextQuestion != 4){
+      prevQuestion = nextQuestion;
+      nextQuestion++;
+      $("#q" + prevQuestion).attr('style', "display: none");
+      $("#q" + nextQuestion).removeAttr('style');
+    }
+    
+    if(nextQuestion == 4)
+      $('.next').css('cursor', 'not-allowed');
+    
+    $('.question_header_text span').text(nextQuestion);
+    $('.prev').css('cursor', 'pointer');
+  });
+  
+  $('.prev').click(function(){
+    if(prevQuestion != 0){
+      nextQuestion = prevQuestion;
+      prevQuestion--;
+      $("#q" + (nextQuestion + 1)).attr('style', "display: none");
+      $("#q" + nextQuestion).removeAttr('style');
+    }
+    
+    if(prevQuestion == 0){
+      $('.prev').css('cursor', 'not-allowed');
+    }
+    
+    $('.question_header_text span').text(nextQuestion);
+    $('.next').css('cursor', 'pointer');
+  });
+}
+
+function reset(){
+  $('#reset_quiz').click(function(){
+    location.reload();
+  });
 }
 
 function displayTotalScore(){
@@ -243,5 +304,7 @@ $(document).ready(function () {
   question2();
   question3();
   question4();
+  pagination();
+  reset();
   displayTotalScore();
 });
