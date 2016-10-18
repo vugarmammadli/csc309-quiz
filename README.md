@@ -1,8 +1,17 @@
 # Information for Graders
 
-Please add any information that might be relevant to the grader.  This file
-will not be marked, but if the grader is confused by your work, or is looking
-for more information about your design decisions, or is wondering why something
-doesn't quite work he or she will look here to find some insight into your
-thought process. The grader will also look at the documentation in your HTML,
-CSS, and JavaScript files.
+There is red message part on the above of all questions. All information that are
+related to questions are displayed there for users.
+
+Users can change question by clicking next and prev buttons. User can answers questions
+in any order. The final result will be available when all questions are answered.
+
+Question 1: User chooses answer and the explanation of the selected answer appears.
+If the answer is right, it has green border, otherwise it has red border.
+
+Question 3: User should choose click professor firstly, then click the the claim.
+When submit button is clicked, the correct answer of the wrong matches is displayed.
+
+Question 4: User should arrange inventions from oldest to newest by drag and drop.
+When submit button is clicked, the wrong arrangements will have red border, wrong ones
+will have green border.
