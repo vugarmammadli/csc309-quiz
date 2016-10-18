@@ -350,6 +350,7 @@ function endQuiz() {
     //enable result button if all questions are answered.
     if (numOfQuestionsAnswered == 5) {
         $('.show_result').removeAttr('style');
+        alert("Quiz finished. Total score: " + totalScore);
     }
 
     $('.show_result').click(function() {
