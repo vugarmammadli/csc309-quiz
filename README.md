@@ -4,6 +4,8 @@
 
 The purpose of this assignment is to get some practice building an HTML web page with CSS for layout and style, and JavaScript to make it dynamic. You will do this by implementing several different types of interactive quiz questions.
 
+The final version of the project can be found [here](http://vugarmammadli.com/csc309-quiz/).
+
 ### Introduction
 
 There are four different type of questions to implement in this assignment:
