@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Assignment 1: CS Quiz</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="quiz.js"></script>
+    </head>
+    <body>
+        <div id="info">
+            <div class="quiz_name">Assignment 1: CS Quiz</div>
+            <div class="quiz_score">Total Score: <span id="score">0</span></div>
+        </div>
+        <div class="content">
+            <div class="question_header">
+                <div class="question_header_text">
+                    Question <span>1</span>
+                </div>
+            </div>
+            <div class="container">
+                <div id="q1">
+                    <div class="message">
+                        Please select one answer. You only have one chance.
+                    </div>
+                    <div class="question">1)The first electronic computer in Canada was housed in the Computer Science Department at the U of T.  What was its name?</div>
+                    <div class="answers">
+                        <ul>
+                            <li>
+                                <p><input type="radio" name="answer" value="hal900">HAL 900</p>
+                                <p id="hal900" hidden="hidden">The HAL 9000 is a fictional computer from Arthur C. Clarke's 2001: A Space Odyssey.</p>
+                            </li>
+                            <li>
+                                <p><input type="radio" name="answer" value="ferut">FERUT</p>
+                                <p id="ferut" hidden="hidden">The machine arrived in Canada on April 30, 1952.  Named FERUT (FERranti U of T), it was used to compute changes in water levels due to the opening of the St. Lawrence Seaway.</p>
+                            </li>
+                            <li>
+                                <p><input type="radio" name="answer" value="illiac">ILLIAC</p>
+                                <p id="illiac" hidden="hidden">The ILLIAC was built at the University of Illinois. It was the first von Neumann architecture computer built and owned by an American university. It was put into service on September 22, 1952.</p>
+                            </li>
+                            <li>
+                                <p><input type="radio" name="answer" value="univacs">UNIVACs</p>
+                                <p id="univacs" hidden="hidden">The UNIVAC was the first commericial computer produced in the United States, and was designed by J. Presper Eckert and John Mauchly.  The United States Census Department received delivery of the first UNIVAC in May 1952.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="question_header_score">
+                        Your score: <span>0</span>
+                    </div>
+                    <div id="explanations" hidden="hidden">
+                        <input id="show_explanation" type="button" value="Show all explanations" />
+                    </div>
+                </div>
+                <div id="q2" style="display: none">
+                    <div class="message">
+                        Please select exactly two answer. You only have one chance.
+                    </div>
+                    <div class="question">
+                        2) University of Toronto Professors Kelly Gotlieb and Pat Hume are credited in the Oxford English Dictionary with early published use of more than 10 words used in the vocabulary of computing from their 1958 book, "High-speed Data Processing".  Which two of the following are *not* words for which they are quoted in the OED?
+                    </div>
+                    <div class="answers">
+                        <ul>
+                            <li>
+                                <p><input type="checkbox" name="answer" value="loop">loop</p>
+                            </li>
+                            <li>
+                                <p><input type="checkbox" name="answer" value="inline">inline</p>
+                            </li>
+                            <li>
+                                <p><input type="checkbox" name="answer" value="keyboard">keyboard</p>
+                            </li>
+                            <li>
+                                <p><input type="checkbox" name="answer" value="interpreter">interpreter</p>
+                            </li>
+                            <li>
+                                <p><input type="checkbox" name="answer" value="function">function</p>
+                            </li>
+                            <li>
+                                <p><input type="checkbox" name="answer" value="block">block</p>
+                            </li>
+                            <li>
+                                <p><input type="checkbox" name="answer" value="character">character</p>
+                            </li>
+                            <li>
+                                <p><input type="checkbox" name="answer" value="variable">variable</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="question_header_score">
+                        Your score: <span>0</span>
+                    </div>
+                    <div id="submit_answer_q2">
+                        <input id="submit_q2" class="submit_btn" type="button" value="Submit your answers" />
+                    </div>
+                </div>
+                <div id="q3" style="display: none">
+                    <div class="message">
+                        Please, firstly select the professor from the left side and then click the claim you want to match.
+                    </div>
+                    <div class="question">
+                        3) Match the CS Professor with his or her claim to fame:
+                    </div>
+                    <div class="answers">
+                        <table class="q3_list">
+                            <tr>
+                                <td class="danielwigdor">Daniel Wigdor</td>
+                                <td class="davidlevinclaim"><span class="user_choice">____________________</span>: Associate Research Scientist at Disney Research before joining the faculty <span class="correct_answer"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="stephencook">Stephen Cook</td>
+                                <td class="geoffhintonclaim"><span class="user_choice">____________________</span>: Pioneer in machine learning, now Distinguished Researcher at Google <span class="correct_answer"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="geoffhinton">Geoff Hinton</td>
+                                <td class="karansinghclaim"><span class="user_choice">____________________</span>: Academy Award for Ryan (software research and development director) <span class="correct_answer"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="karansingh">Karan Singh</td>
+                                <td class="danielwigdorclaim"><span class="user_choice">____________________</span>: Taught a first-year course while an undergraduate student in our department <span class="correct_answer"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="dianehorton">Diane Horton</td>
+                                <td class="raquelurtasunclaim"><span class="user_choice">____________________</span>: Canada Research Chair in Machine Learning and Computer Vision, researching self-driving cars <span class="correct_answer"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="raquelurtasun">Raquel Urtasun</td>
+                                <td class="mikebrudnoclaim"><span class="user_choice">____________________</span>: Scientific Director of the Centre for Computational Medicine at Sick Kids Hospital <span class="correct_answer"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="davidlevin">David Levin</td>
+                                <td class='stephencookclaim'><span class="user_choice">____________________</span>: Turing Award winner for work in computational complexity <span class="correct_answer"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="mikebrudno">Mike Brudno</td>
+                                <td class="dianehortonclaim"><span class="user_choice">____________________</span>: Winner of both the President's Teaching Award and OCUFA teaching award <span class="correct_answer"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="question_header_score">
+                        Your score: <span>0</span>
+                    </div>
+                    <div id="submit_answer_q3">
+                        <input id="submit_q3" class="submit_btn" type="button" value="Submit your answers" disabled="disabled" />
+                    </div>
+                    <div id="message">
+                    </div>
+                </div>
+                <div id="q4" style="display: none">
+                    <div class="message">
+                        Please click to answer, drag and drop it to change. You only have one chance.
+                    </div>
+                    <div class="question">
+                        4) Arrange by year of invention from oldest to newest: (Newest should be at the top)
+                    </div>
+                    <div class="answers">
+                        <div id="col1" class="column" draggable="true">The First Computer Network <span class="correct_answer"></span></div>
+                        <div id="col2" class="column" draggable="true">First Microprocessor: Intel 4004 <span class="correct_answer"></span></div>
+                        <div id="col3" class="column" draggable="true">First Popular High-Level Language: FORTRAN <span class="correct_answer"></span></div>
+                        <div id="col4" class="column" draggable="true">First Open Source Software: A-2 System <span class="correct_answer"></span></div>
+                        <div id="col5" class="column" draggable="true">First Compiler for Electronic Computer: A-0 System <span class="correct_answer"></span></div>
+                        <div id="col6" class="column" draggable="true">First Computer Program <span class="correct_answer"></span></div>
+                        <div id="col7" class="column" draggable="true">First Object Oriented Programming Language: Simula <span class="correct_answer"></span></div>
+                    </div>
+                    <div class="question_header_score">
+                        Your score: <span>0</span>
+                    </div>
+                    <div id="submit_answer_q4">
+                        <input id="submit_q4" class="submit_btn" type="button" value="Submit your answers" />
+                    </div>
+                </div>
+                <div class="tasks">
+                    <div class="reset">
+                        <input id="reset_quiz" type="reset" value="Reset Quiz" />
+                    </div>
+                    <div class="pagination">
+                        <div class="prev"> &#10092; prev</div>
+                        <div class="next">next &#10093;</div>
+                    </div>
+                </div>
+                <div id="final" style="display: none">
+                    <div class="congrat">
+                        Congratualtions! You just finished our cool quiz =)
+                    </div>
+                    <div id="q1score" class="congrat">
+                        You got <span class="correct_answer"></span> points from question 1.
+                    </div>
+                    <div id="q2score" class="congrat">
+                        You got <span class="correct_answer"></span> points from question 2.
+                    </div>
+                    <div id="q3score" class="congrat">
+                        You got <span class="correct_answer"></span> points from question 3.
+                    </div>
+                    <div id="q4score" class="congrat">
+                        You got <span class="correct_answer"></span> points from question 4.
+                    </div>
+                    <div id="finalscore" class="congrat">
+                        Your final score is: <span class="correct_answer"></span>. Thank you!
+                    </div>
+                    <div class="congrat">
+                        <input id="start_again" type="button" value="Start Again" />
+                    </div>
+                </div>
+            </div>
+            <div class="show_result" style="display: none">
+                Show Your Results
+            </div>
+        </div>
+        <div class="clear"></div>
+        <footer>
+            <div class="footer">
+                <div class="footer_line">
+                    <hr />
+                </div>
+                <div class="copyright_msg">University of Toronto CSC309 2016 Fall -  Assignment1 - Vugar Mammadli</div>
+            </div>
+        </footer>
+    </body>
+</html>
